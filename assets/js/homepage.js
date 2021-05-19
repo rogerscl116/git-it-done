@@ -9,11 +9,20 @@ var getUserRepos = function(user) {
 
     // make a request to the url
     fetch(apiUrl).then(function(response) {
+        if (response.ok) {
         response.json().then(function(data) {
         displayRepos(data, user);
-    })
-    })
+    });
+} else {
+    alert("Error: GitHub User Not Found")
+    }
+});
 }
+.catch(function(error) {
+    // notice this `.catch()` getting chained onto the end of the `.then()` method
+    alert("Unable to connect to GitHub");
+});
+
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -26,14 +35,15 @@ var formSubmitHandler = function(event) {
     } else {
         alert("Please enter a GitHub username");
     }
-    console.log(event);
 };
 
-userFormEl.addEventListener("submit", formSubmitHandler);
-
 var displayRepos = function(repos, searchTerm) {
-    console.log(repos);
-    console.log(searchTerm);
+    
+    // check if api returned any repos
+    if (repos.length === 0) {
+        reposContainer.textContent = "No repositories found.";
+        return;
+    }
 
     // clear old content
     repoContainer.textContent = "";
@@ -75,3 +85,5 @@ var displayRepos = function(repos, searchTerm) {
         repoContainer.appendChild(repoEl);
     }
 };
+
+userFormEl.addEventListener("submit", formSubmitHandler);
