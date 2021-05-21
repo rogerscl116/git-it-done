@@ -12,3 +12,5 @@ A web app that use's GitHub's API to search for open source projects with open i
 ## Screenshot
 
 ![Git-it-done Screenshot](./assets/images/git-it-done-ss.jpg)
+
+*Created By Charity Rogers*
