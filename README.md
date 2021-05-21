@@ -1,4 +1,4 @@
-# Git-it-done
+# Git it Done
 
 ## Description
 
